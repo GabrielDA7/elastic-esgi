@@ -7,8 +7,12 @@ const envVarsSchema = Joi.object().keys({
         .default('development'),
     PORT: Joi.number()
         .default(4040),
+    ELASTIC_HOSTNAME: Joi.string()
+        .default('localhost'),
+    ELASTIC_PORT: Joi.number()
+        .default(9200),
 }).unknown()
-  .required();
+    .required();
 
 const { error, value: envVars } = Joi.validate(process.env, envVarsSchema);
 
@@ -18,7 +22,9 @@ if (error) {
 
 const config = {
     env: envVars.NODE_ENV,
-    port: envVars.PORT
+    port: envVars.PORT,
+    elasticHostname: envVars.ELASTIC_HOSTNAME,
+    elasticPort: envVars.ELASTIC_PORT,
 };
 
 module.exports = config;
