@@ -1,0 +1,7 @@
+
+
+
+GET http://localhost:4040/api/health-check
+
+### Search 
+GET http://localhost:4040/api/search/test
